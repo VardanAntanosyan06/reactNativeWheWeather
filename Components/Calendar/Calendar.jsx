@@ -1,5 +1,12 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {View, Text, ScrollView, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  NativeModules,
+} from 'react-native';
 import moment from 'moment';
 import {styles} from './style';
 import axios from 'axios';
@@ -24,7 +31,7 @@ const Calendar = ({location}) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-        `https://api.weatherapi.com/v1/forecast.json?key=1803ea52335444b2b5f125452230806&q=${location}&days=12`,
+          `https://api.weatherapi.com/v1/forecast.json?key=ba7e174fc75c41078f973010232306&q=${location}&days=12`,
         );
 
         setImages(response.data);
@@ -103,7 +110,7 @@ const Calendar = ({location}) => {
                     </View>
                   ) : (
                     <LoadingAnimation />
-                    )}
+                  )}
                   <Text style={styles.texts}>{e.dayOfString}</Text>
                   <Text style={styles.number}>{e.dayOfNumber}</Text>
                 </View>
@@ -133,7 +140,7 @@ const Calendar = ({location}) => {
                     </View>
                   ) : (
                     <LoadingAnimation />
-                    )}
+                  )}
                   <Text style={styles.texts}>{e.dayOfString}</Text>
                   <Text style={styles.number}>{e.dayOfNumber}</Text>
                 </View>
@@ -144,7 +151,7 @@ const Calendar = ({location}) => {
           <LoadingAnimation />
         )}
       </ScrollView>
-      <Info index={showInfo} location={location}/>
+      <Info index={showInfo} location={location} />
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}

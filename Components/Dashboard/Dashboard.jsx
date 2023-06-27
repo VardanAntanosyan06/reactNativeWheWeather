@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Text,
   View,
@@ -9,39 +9,49 @@ import {
   Alert,
 } from 'react-native';
 import Calendar from '../Calendar/Calendar';
-import {styles} from './style';
-import serchIcon from './searchIcon.png';
+import { styles } from './style';
+import searchIcon from './searchIcon.png';
+import getLocation from '../getLocation/getLocation';
+import LoadingAnimation from '../LoadingAnimation/LoadingAnimation';
 
 const Dashboard = () => {
-  const [value, setValue] = useState('yEREVAN');
-  useEffect(()=>{
+  const [value, setValue] = useState({city:"Loading..."});
+  const location = getLocation();
+  console.log(value);
+  useEffect(() => {
+    if (location) {
+      setValue(location);
+    }
+  }, [location]);
 
-  },[value])
-
-  return (
+  if(value.city!="Loading..."){
+    return (
     <ScrollView style={styles.main}>
       <View
         style={{
-          width: 100 + '%',
+          width: '100%',
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-evenly',
           alignItems: 'center',
-        }}>
+        }}
+      >
+        <View style={{display:"flex", marginBottom: 20}}>
         <TextInput
-          style={{fontSize: 28, marginBottom: 20, color: 'rgb(192, 192, 192)'}}
+          style={{ fontSize: 28, color: 'rgb(105,105,105)' }}
           editable
           multiline
-          value={value}
+          value={value.city}
           onChangeText={text => setValue(text)}
         />
-        <TouchableOpacity >
-          <Image source={serchIcon} style={{width: 30, height: 30}} />
-        </TouchableOpacity>
+        <Text>{value.address}</Text>
+        </View>
       </View>
-      <Calendar location={value} />
+      <Calendar location={value.city} />
+      
     </ScrollView>
-  );
+  )}
+  return <LoadingAnimation />
 };
 
 export default Dashboard;

@@ -13,7 +13,7 @@ const Info = ({index,location}) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://api.weatherapi.com/v1/forecast.json?key=1803ea52335444b2b5f125452230806&q=${location}&days=12`,
+          `https://api.weatherapi.com/v1/forecast.json?key=ba7e174fc75c41078f973010232306&q=${location}&days=12   `,
           );
 
         setData(response.data.forecast.forecastday[index]);

@@ -36,7 +36,7 @@ const Dashboard = () => {
           alignItems: 'center',
         }}
       >
-        <View style={{display:"flex", marginBottom: 20}}>
+        <View style={{display:"flex", marginBottom: 20,textAlingn:"center"}}>
         <TextInput
           style={{ fontSize: 28, color: 'rgb(105,105,105)' }}
           editable
